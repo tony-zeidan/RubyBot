@@ -21,7 +21,3 @@ local.properties
 .idea/dictionaries
 .idea/libraries
 .src/main/java/BotInformation.java
-
-# Default ignored files
-/shelf/
-/workspace.xml
