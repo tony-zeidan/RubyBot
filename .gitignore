@@ -1,9 +1,6 @@
+#Defaults
 bin/
 build/
-.gradle
-.gradletasknamecache
-gradle-app.setting
-!gradle-wrapper.jar
 out/
 .idea/
 .idea_modules/
@@ -11,9 +8,15 @@ out/
 *.ipr
 *.iws
 
+#Gradle
+.gradle
+.gradletasknamecache
+gradle-app.setting
+!gradle-wrapper.jar
 gradle/
 gradlew
 gradlew.bat
 settings.gradle
 
+#Sensitive
 src/main/java/BotInformation.java
