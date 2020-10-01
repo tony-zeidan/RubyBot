@@ -10,4 +10,4 @@ out/
 *.iml
 *.ipr
 *.iws
-.src/main/java/BotInformation.java
+src/main/java/BotInformation.java
