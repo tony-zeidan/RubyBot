@@ -11,6 +11,7 @@ out/
 *.ipr
 *.iws
 
+gradle/
 gradlew
 gradlew.bat
 settings.gradle
