@@ -11,11 +11,13 @@ public class BotListenerUI extends JFrame {
 
         listModel = new DefaultListModel();
         JList list = new JList(listModel);
-        content.add(list);
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(list);
+        list.setLayoutOrientation(JList.VERTICAL);
+        content.add(scrollPane);
     }
 
     public void addMessage(String message) {
         listModel.addElement(message);
     }
-
 }
