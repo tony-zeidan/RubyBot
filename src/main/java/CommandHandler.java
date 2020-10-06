@@ -1,3 +1,4 @@
+import com.jagrosh.jdautilities.command.Command;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -15,10 +16,13 @@ import java.util.HashMap;
  */
 public class CommandHandler extends ListenerAdapter
 {
+    private BotListenerUI ui = new BotListenerUI();
+
     private HashMap<String, RubyCommand> validCommands;
 
     public CommandHandler()
     {
+        ui = new BotListenerUI();
         validCommands = new HashMap<>();
     }
 
@@ -41,7 +45,6 @@ public class CommandHandler extends ListenerAdapter
     @Override
     public void onGuildMessageReceived(@Nonnull GuildMessageReceivedEvent event)
     {
-
         Member author = event.getMember();
         if (author.getUser().isBot())
             return;
@@ -66,7 +69,7 @@ public class CommandHandler extends ListenerAdapter
         messageInfo.put("Author String",author.getEffectiveName());
         messageInfo.put("Author Id",author.getId());
         messageInfo.put("Message",message.getContentRaw());
-        System.out.println(messageInfo);
+        ui.addMessage(messageInfo.toString());
 
         String first_word = content.split(" ")[0];
         first_word = first_word.substring(BotInformation.BOT_PREFIX.length());
