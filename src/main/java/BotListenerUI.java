@@ -15,6 +15,11 @@ public class BotListenerUI extends JFrame {
         scrollPane.setViewportView(list);
         list.setLayoutOrientation(JList.VERTICAL);
         content.add(scrollPane);
+
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new Dimension(400,200));
+        pack();
+        setVisible(true);
     }
 
     public void addMessage(String message) {
