@@ -16,7 +16,7 @@ import java.util.HashMap;
  */
 public class CommandHandler extends ListenerAdapter
 {
-    private BotListenerUI ui = new BotListenerUI();
+    private BotListenerUI ui;
 
     private HashMap<String, RubyCommand> validCommands;
 
@@ -62,16 +62,26 @@ public class CommandHandler extends ListenerAdapter
 
 
         //HashMap for printing and storing current message information
-        HashMap<String,String> messageInfo = new HashMap<>();
+        /*HashMap<String,String> messageInfo = new HashMap<>();
         messageInfo.put("Guild Name",guild.getName());
         messageInfo.put("Channel Name",channel.getName());
         messageInfo.put("Channel Type",channel.getType().name());
         messageInfo.put("Author String",author.getEffectiveName());
         messageInfo.put("Author Id",author.getId());
-        messageInfo.put("Message",message.getContentRaw());
-        ui.addMessage(messageInfo.toString());
+        messageInfo.put("Message",message.getContentRaw());*/
+
+        ui.addMessage(new String[]{
+                guild.getName(),
+                channel.getName(),
+                channel.getType().toString(),
+                author.getEffectiveName(),
+                author.getId(),
+                message.getContentRaw(),
+                "worked"
+        });
 
         String first_word = content.split(" ")[0];
+        if (first_word.length() < BotInformation.BOT_PREFIX.length()) return;
         first_word = first_word.substring(BotInformation.BOT_PREFIX.length());
 
         //check if the command starts with the prefix
