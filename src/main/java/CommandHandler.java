@@ -60,16 +60,26 @@ public class CommandHandler extends ListenerAdapter
         if (content.equals(""))
             return;
 
+        String commandName = "Not a command";
+        String first_word = content.split(" ")[0];
+        if (first_word.length() > BotInformation.BOT_PREFIX.length()) {
 
-        //HashMap for printing and storing current message information
-        /*HashMap<String,String> messageInfo = new HashMap<>();
-        messageInfo.put("Guild Name",guild.getName());
-        messageInfo.put("Channel Name",channel.getName());
-        messageInfo.put("Channel Type",channel.getType().name());
-        messageInfo.put("Author String",author.getEffectiveName());
-        messageInfo.put("Author Id",author.getId());
-        messageInfo.put("Message",message.getContentRaw());*/
+            first_word = first_word.substring(BotInformation.BOT_PREFIX.length());
 
+            //check if the command starts with the prefix
+            if (content.startsWith(BotInformation.BOT_PREFIX)) {
+                //check if valid command
+                if (validCommands.containsKey(first_word)) {
+                    RubyCommand cmd = validCommands.get(first_word);
+                    commandName = cmd.getWord().getName().toUpperCase();
+                    cmd.execute(message, channel, guild, author);
+                } else {
+                    System.out.println("Not a valid command!");
+                }
+            }
+        }
+
+        //add message to the user interface
         ui.addMessage(new String[]{
                 guild.getName(),
                 channel.getName(),
@@ -77,28 +87,8 @@ public class CommandHandler extends ListenerAdapter
                 author.getEffectiveName(),
                 author.getId(),
                 message.getContentRaw(),
-                "worked"
+                commandName
         });
-
-        String first_word = content.split(" ")[0];
-        if (first_word.length() < BotInformation.BOT_PREFIX.length()) return;
-        first_word = first_word.substring(BotInformation.BOT_PREFIX.length());
-
-        //check if the command starts with the prefix
-        if (content.startsWith(BotInformation.BOT_PREFIX))
-        {
-            //check if valid command
-            if (validCommands.containsKey(first_word))
-            {
-                RubyCommand cmd = validCommands.get(first_word);
-                System.out.println(cmd.getWord().getName().toUpperCase() + " command executed!");
-                cmd.execute(message,channel,guild,author);
-            }
-            else
-            {
-                System.out.println("Not a valid command!");
-            }
-        }
 
     }
 }
