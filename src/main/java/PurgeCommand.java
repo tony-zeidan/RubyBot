@@ -23,8 +23,7 @@ public class PurgeCommand extends RubyCommand {
     public PurgeCommand()
     {
         super.word=new CommandWord("purge",CommandCategory.TEXT_CHANNEL_MANAGEMENT,"Deletes a given amount of messages from chat",BotInformation.BOT_PREFIX+"purge (amount : optional (default=10))");
-        super.permissionHandler.addPermissions(CommandDefinitions.TEXT_PERMISSIONS_BOT,new Permission[] {Permission.MESSAGE_HISTORY,Permission.MESSAGE_MANAGE});
-        super.permissionHandler.addPermissions(CommandDefinitions.TEXT_PERMISSIONS_MEMBER,new Permission[] {Permission.MESSAGE_HISTORY,Permission.MESSAGE_MANAGE});
+        super.setPermissions(Permission.MESSAGE_HISTORY,Permission.MESSAGE_MANAGE);
     }
 
     /**
@@ -41,7 +40,7 @@ public class PurgeCommand extends RubyCommand {
     public void execute(Message msg, TextChannel channel, Guild guild, Member author)
     {
         Member self = guild.getSelfMember();
-        if (!super.checkPermissions(self,author,null,null)) return;
+        if (!super.checkPermissions(channel,self,author)) return;
         super.canWrite = self.hasPermission(channel,Permission.MESSAGE_WRITE);
 
         //check if the author has permissions
@@ -83,7 +82,7 @@ public class PurgeCommand extends RubyCommand {
         super.writeMessage(channel,deleteAmount + " messages purged from chat.");
         history = new MessageHistory(channel);
         List<Message> last = history.retrievePast(1).complete();
-        channel.deleteMessages(last).delay(Duration.ofSeconds(5));
+        //channel.deleteMessages(last).delay(Duration.ofSeconds(5));
 
         System.out.println(deleteAmount + " messages purged from the chat.");
     }

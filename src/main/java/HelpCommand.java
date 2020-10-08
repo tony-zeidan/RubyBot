@@ -32,7 +32,6 @@ public class HelpCommand extends RubyCommand
     public HelpCommand(EventWaiter ew,CommandHandler ch)
     {
         super.word=new CommandWord("help",CommandCategory.GENERAL,"Provides a list of commands and what they do.",BotInformation.BOT_PREFIX+"help (command name : optional)");
-        super.permissionHandler.addPermissions(CommandDefinitions.TEXT_PERMISSIONS_BOT,new Permission[] {Permission.MESSAGE_WRITE});
         this.ch = ch;
         pb = new Paginator.Builder()
             .setColumns(1)
@@ -66,7 +65,7 @@ public class HelpCommand extends RubyCommand
         Member self = guild.getSelfMember();
 
         //check if bot has permissions
-        if (!super.checkPermissions(self,author,channel,null)) return;
+        if (!super.checkPermission(channel,self,Permission.MESSAGE_WRITE)) return;
 
         String[] msgParts = msg.getContentRaw().split("\\s+");
         List<String> args = Arrays.asList(msgParts).subList(1, msgParts.length);

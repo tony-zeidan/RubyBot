@@ -23,9 +23,8 @@ public class BanCommand extends RubyCommand {
      * Creates a new command object with a new command word.
      */
     public BanCommand() {
-        super.word=new CommandWord("ban","guild member management","Bans the specified member from the guild.",BotInformation.BOT_PREFIX+"ban 'target member'");
-        super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_BOT, new Permission[] {Permission.BAN_MEMBERS});
-        super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_MEMBER,new Permission[] {Permission.BAN_MEMBERS});
+        super.word=new CommandWord("ban",CommandCategory.MEMBER_MANAGEMENT,"Bans the specified member from the guild.",BotInformation.BOT_PREFIX+"ban 'target member'");
+        super.setPermissions(Permission.BAN_MEMBERS);
     }
 
     /**
@@ -43,8 +42,8 @@ public class BanCommand extends RubyCommand {
         Member self = guild.getSelfMember();
 
         //check if the bot and author meet the permissions of this command
-        if (!super.checkPermissions(self,author,null,null)) return;
-        canWrite = self.hasPermission(channel,Permission.MESSAGE_WRITE);
+        if (!super.checkPermissions(self,author)) return;
+        canWrite = super.checkPermission(channel,self,Permission.MESSAGE_WRITE);
 
         String[] msgParts = msg.getContentRaw().split("\\s+");
         List<String> args = Arrays.asList(msgParts).subList(1,msgParts.length);
@@ -64,7 +63,7 @@ public class BanCommand extends RubyCommand {
             Member target = members.get(0);
 
             //check if the bot and author can interact with the target member
-            if (!super.canTargetMember(self,author,target,channel)) return;
+            if (!super.canInteractTarget(self,author,target)) return;
 
             //ban the target for 10 days
             guild.ban(target,10,author.getUser().getName() + " has dropped the ban hammer on you.").queue();

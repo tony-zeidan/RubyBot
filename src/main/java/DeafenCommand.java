@@ -22,6 +22,7 @@ public class DeafenCommand extends RubyCommand {
      */
     public DeafenCommand() {
         super.word=new CommandWord("deafen",CommandCategory.VOICE_CHANNEL_MANAGEMENT,"Server deafens a given user.",BotInformation.BOT_PREFIX+"deafen (@user)");
+        super.setPermissions(Permission.VOICE_DEAF_OTHERS);
     }
 
     /**
@@ -66,10 +67,10 @@ public class DeafenCommand extends RubyCommand {
             }
 
             //check if the author and bot have enough permissions to execute the command
-            if (!super.checkPermissions(self,author,channel,vc)) return;
+            if (!super.checkPermissions(vc,self,author)) return;
 
             //check the hierarchy to see if the bot and author can both interact with the target member
-            if (!super.canTargetMember(self,author,target,channel)) return;
+            if (!super.canInteractTarget(self,author,target)) return;
 
             //toggle the deafening of the target
             target.deafen(!target.getVoiceState().isGuildDeafened()).queue();

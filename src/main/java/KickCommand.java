@@ -24,8 +24,7 @@ public class KickCommand extends RubyCommand {
      */
     public KickCommand() {
         super.word=new CommandWord("kick",CommandCategory.MEMBER_MANAGEMENT,"Kicks the specified member from the guild.",BotInformation.BOT_PREFIX+"kick (@user)");
-        super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_BOT,new Permission[] {Permission.KICK_MEMBERS});
-        super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_MEMBER,new Permission[] {Permission.KICK_MEMBERS});
+        super.setPermissions(Permission.KICK_MEMBERS);
     }
 
     /**
@@ -43,8 +42,8 @@ public class KickCommand extends RubyCommand {
         Member self = guild.getSelfMember();
 
         //check if the bot and author have sufficient permissions to execute
-        if (!super.checkPermissions(self,author,null,null)) return;
-        super.canWrite = self.hasPermission(channel,Permission.MESSAGE_WRITE);
+        if (!super.checkPermissions(self,author)) return;
+        super.canWrite = super.checkPermission(channel,self,Permission.MESSAGE_WRITE);
 
         String[] msgParts = msg.getContentRaw().split("\\s+");
         List<String> args = Arrays.asList(msgParts).subList(1,msgParts.length);
@@ -61,7 +60,7 @@ public class KickCommand extends RubyCommand {
             Member target = members.get(0);
 
             //check if the bot and author can interact with the target member
-            if (!super.canTargetMember(self,author,target,channel)) return;
+            if (!super.canInteractTarget(self,author,target)) return;
 
             //kick the member
             guild.kick(target,author.getUser().getName() + " has given you a kick.").queue();

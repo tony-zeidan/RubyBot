@@ -9,11 +9,5 @@ public enum CommandCategory {
     VOICE_CHANNEL_MANAGEMENT,
     MEMBER_MANAGEMENT,
     GUILD_MANAGEMENT,
-    BOT_MANAGEMENT;
-
-    private Permission[] basePermissions;
-
-    private CommandCategory(Permission... basePermissions) {
-        this.basePermissions = basePermissions;
-    }
+    BOT_MANAGEMENT
 }

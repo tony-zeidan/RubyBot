@@ -21,8 +21,7 @@ public class MuteCommand extends RubyCommand {
      */
     public MuteCommand() {
         super.word=new CommandWord("mute",CommandCategory.VOICE_CHANNEL_MANAGEMENT,"Server mutes a given user.",BotInformation.BOT_PREFIX+"mute (@user)");
-        //super.permissionHandler.addPermissions(CommandDefinitions.VOICE_PERMISSIONS_BOT,new Permission[] {Permission.VOICE_MUTE_OTHERS});
-        //super.permissionHandler.addPermissions(CommandDefinitions.VOICE_PERMISSIONS_MEMBER,new Permission[] {Permission.VOICE_MUTE_OTHERS});
+        super.setPermissions(Permission.VOICE_MUTE_OTHERS);
     }
 
     /**
@@ -39,7 +38,7 @@ public class MuteCommand extends RubyCommand {
 
         Member self = guild.getSelfMember();
 
-        boolean write = self.hasPermission(channel,Permission.MESSAGE_WRITE);
+        super.canWrite = super.checkPermission(channel,self,Permission.MESSAGE_WRITE);
 
         String[] msgParts = msg.getContentRaw().split("\\s+");
         List<String> args = Arrays.asList(msgParts).subList(1,msgParts.length);
@@ -66,10 +65,10 @@ public class MuteCommand extends RubyCommand {
             }
 
             //check if the author and bot have enough permissions to execute the command
-            if (!super.checkPermissions(self,author,channel,vc)) return;
+            if (!super.checkPermissions(vc,self,author)) return;
 
             //check the hierarchy to see if the bot and author can both interact with the target member
-            if (!super.canTargetMember(self,author,target,channel)) return;
+            if (!super.canInteractTarget(self,author,target)) return;
 
             //toggle the muting on the target member
             target.mute(!target.getVoiceState().isGuildMuted()).queue();

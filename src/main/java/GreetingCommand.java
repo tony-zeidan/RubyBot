@@ -24,7 +24,7 @@ public class GreetingCommand extends RubyCommand {
      * Creates a new command object with a new command word.
      */
     public GreetingCommand() {
-        super.word=new CommandWord("greeting",CommandCategory.GENERAL,"Greets Ruby bot kindly.",BotInformation.BOT_PREFIX+"hello");
+        super.word=new CommandWord("greeting",CommandCategory.GENERAL,"Greets Ruby bot kindly.","hello");
     }
 
     /**
@@ -41,8 +41,7 @@ public class GreetingCommand extends RubyCommand {
         Member self = guild.getSelfMember();
 
         //check if the author and bot have enough permissions to execute the command
-        if (!super.checkPermissions(self,author,channel,null)) return;
-        super.canWrite = true;
+        if (!super.checkPermission(channel,self,Permission.MESSAGE_WRITE)) return;
 
         String[] msgParts = msg.getContentRaw().split("\\s+");
         List<String> args = Arrays.asList(msgParts).subList(1,msgParts.length);

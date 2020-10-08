@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.internal.utils.PermissionUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +26,6 @@ public class ShowLoveCommand extends RubyCommand {
      */
     public ShowLoveCommand() {
         super.word=new CommandWord("showlove",CommandCategory.GENERAL,"A nice way to show some love to your audience!",BotInformation.BOT_PREFIX+"showlove (@user : optional)");
-        super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_BOT,new Permission[] {Permission.MESSAGE_WRITE});
     }
 
     /**
@@ -42,7 +42,7 @@ public class ShowLoveCommand extends RubyCommand {
         //get the bots member status
         Member self = guild.getSelfMember();
 
-        if (!super.checkPermissions(self,author,channel,null)) return;
+        if (!super.checkPermission(channel,self,Permission.MESSAGE_WRITE)) return;
 
         String[] msgParts = msg.getContentRaw().split("\\s+");
         List<String> args = Arrays.asList(msgParts).subList(1,msgParts.length);
@@ -60,6 +60,7 @@ public class ShowLoveCommand extends RubyCommand {
             channel.sendMessage("Hey " + members.get(0).getAsMention() + "! Hope you are having a wonderful day! :heart::heart::heart:").queue();
 
         } else if (args.size()==0) {
+            if (!super.checkPermission(channel,author,Permission.MESSAGE_MENTION_EVERYONE)) return;
             channel.sendMessage( "Hey everyone! Hope you are all having a wonderful day! :heart::heart::heart:").queue();
         } else {
             super.writeErrorMessage(channel,"You must input none or one argument, a member!");

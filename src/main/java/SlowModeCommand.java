@@ -22,8 +22,7 @@ public class SlowModeCommand extends RubyCommand
      */
     public SlowModeCommand() {
         super.word=new CommandWord("slowmode",CommandCategory.TEXT_CHANNEL_MANAGEMENT,"Sets the slowmode status of the current text channel.",BotInformation.BOT_PREFIX+"slowmode (time)");
-        super.permissionHandler.addPermissions(CommandDefinitions.TEXT_PERMISSIONS_BOT,new Permission[] {Permission.MESSAGE_MANAGE});
-        super.permissionHandler.addPermissions(CommandDefinitions.TEXT_PERMISSIONS_MEMBER,new Permission[] {Permission.MESSAGE_MANAGE});
+        super.setPermissions(Permission.MESSAGE_MANAGE);
     }
 
     /**
@@ -40,8 +39,8 @@ public class SlowModeCommand extends RubyCommand
 
         Member self = guild.getSelfMember();
 
-        if (!super.checkPermissions(self,author,channel,null)) return;
-        super.canWrite = self.hasPermission(channel,Permission.MESSAGE_WRITE);
+        if (!super.checkPermissions(channel,self,author)) return;
+        super.canWrite = super.checkPermission(channel,self,Permission.MESSAGE_WRITE);
 
         String[] msgParts = msg.getContentRaw().split(" ");
         List<String> args = Arrays.asList(msgParts).subList(1, msgParts.length);

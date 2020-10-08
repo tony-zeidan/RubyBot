@@ -21,8 +21,10 @@ public class RoleAssignCommand extends RubyCommand {
      */
     public RoleAssignCommand() {
         super.word=new CommandWord("assignrole",CommandCategory.MEMBER_MANAGEMENT,"Assigns the mentioned role to the mentioned user.",BotInformation.BOT_PREFIX+"assignrole (@role) (@user)");
-        super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_BOT,new Permission[] {Permission.MANAGE_ROLES});
-        super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_MEMBER,new Permission[] {Permission.MANAGE_ROLES});
+        super.setPermissions(Permission.MANAGE_ROLES);
+
+        //super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_BOT,new Permission[] {Permission.MANAGE_ROLES});
+        //super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_MEMBER,new Permission[] {Permission.MANAGE_ROLES});
     }
 
     /**
@@ -41,8 +43,8 @@ public class RoleAssignCommand extends RubyCommand {
         Member self = guild.getSelfMember();
 
         //check if the bot and author has sufficient permissions
-        if (!super.checkPermissions(self,author,null,null)) return;
-        super.canWrite = self.hasPermission(channel,Permission.MESSAGE_WRITE);
+        if (!super.checkPermissions(self,author)) return;
+        super.canWrite = super.checkPermission(channel,self,Permission.MESSAGE_WRITE);
 
         String[] msgParts = msg.getContentRaw().split("\\s+");
         List<String> args = Arrays.asList(msgParts).subList(1, msgParts.length);
@@ -63,7 +65,7 @@ public class RoleAssignCommand extends RubyCommand {
             Role targetRole = roles.get(0);
 
             //check if all permissions are met
-            if (!super.canTargetMember(self,author,targetMember,channel)) return;
+            if (!super.canInteractTarget(self,author,targetMember)) return;
 
             if (!self.canInteract(targetRole)) {
                 super.writeErrorMessage(channel,"The bot is unable to interact with the given role! (role >= bot)");

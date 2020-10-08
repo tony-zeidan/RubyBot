@@ -29,8 +29,8 @@ public class GuildListCommand extends RubyNestedCommand {
     public GuildListCommand(EventWaiter ew) {
 
         super.word = new CommandWord("list", CommandCategory.GUILD_STATISTICS, "Provides a list of: members, channels", BotInformation.BOT_PREFIX + "list (members | channels | roles | guilds)");
+        super.setPermissions(Permission.MESSAGE_WRITE,Permission.MESSAGE_ADD_REACTION);
 
-        super.permissionHandler.addPermissions(CommandDefinitions.TEXT_PERMISSIONS_BOT,new Permission[] {Permission.MESSAGE_WRITE});
         pb = new Paginator.Builder()
                 .setColumns(1)
                 .setItemsPerPage(7)
@@ -60,7 +60,7 @@ public class GuildListCommand extends RubyNestedCommand {
         Member self = guild.getSelfMember();
 
         //check if bot has sufficient permissions
-        if (!super.checkPermissions(self,author,channel,null)) return;
+        if (!super.checkPermissions(channel,self,author)) return;
 
         String[] msgParts = msg.getContentRaw().split("\\s+");
         List<String> args = Arrays.asList(msgParts).subList(1,msgParts.length);

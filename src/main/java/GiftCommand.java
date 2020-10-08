@@ -27,7 +27,7 @@ public class GiftCommand extends RubyCommand {
     public GiftCommand()
     {
         super.word=new CommandWord("gift",CommandCategory.GENERAL,"A nice way to show some love to your audience as well!",BotInformation.BOT_PREFIX+"gift (@user)");
-        super.permissionHandler.addPermissions(CommandDefinitions.TEXT_PERMISSIONS_BOT,new Permission[] {Permission.MESSAGE_WRITE,Permission.MESSAGE_MENTION_EVERYONE,Permission.MESSAGE_EMBED_LINKS});
+        super.setPermissions(Permission.MESSAGE_WRITE,Permission.MESSAGE_EMBED_LINKS,Permission.MESSAGE_MENTION_EVERYONE);
         eb = new EmbedBuilder();
     }
 
@@ -49,7 +49,7 @@ public class GiftCommand extends RubyCommand {
         //get the bots member status
         Member self = guild.getSelfMember();
 
-        if (!super.checkPermissions(self,author,channel,null)) return;
+        if (!super.checkPermissions(channel,self,author)) return;
         super.canWrite = true;
 
         //split the message into the corresponding arguments
