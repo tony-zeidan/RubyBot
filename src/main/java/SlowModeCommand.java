@@ -21,7 +21,7 @@ public class SlowModeCommand extends RubyCommand
      * Creates a new command object with a new command word.
      */
     public SlowModeCommand() {
-        super.word=new CommandWord("slowmode","text channel management","Sets the slowmode status of the current text channel.",BotInformation.BOT_PREFIX+"slowmode (time)");
+        super.word=new CommandWord("slowmode",CommandCategory.TEXT_CHANNEL_MANAGEMENT,"Sets the slowmode status of the current text channel.",BotInformation.BOT_PREFIX+"slowmode (time)");
         super.permissionHandler.addPermissions(CommandDefinitions.TEXT_PERMISSIONS_BOT,new Permission[] {Permission.MESSAGE_MANAGE});
         super.permissionHandler.addPermissions(CommandDefinitions.TEXT_PERMISSIONS_MEMBER,new Permission[] {Permission.MESSAGE_MANAGE});
     }

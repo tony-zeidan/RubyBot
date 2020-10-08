@@ -21,9 +21,7 @@ public class DeafenCommand extends RubyCommand {
      * Creates a new command object with a new command word.
      */
     public DeafenCommand() {
-        super.word=new CommandWord("deafen","voice chat management","Server deafens a given user.",BotInformation.BOT_PREFIX+"deafen (@user)");
-        super.permissionHandler.addPermissions(CommandDefinitions.VOICE_PERMISSIONS_BOT,new Permission[] {Permission.VOICE_DEAF_OTHERS});
-        super.permissionHandler.addPermissions(CommandDefinitions.VOICE_PERMISSIONS_MEMBER,new Permission[] {Permission.VOICE_DEAF_OTHERS});
+        super.word=new CommandWord("deafen",CommandCategory.VOICE_CHANNEL_MANAGEMENT,"Server deafens a given user.",BotInformation.BOT_PREFIX+"deafen (@user)");
     }
 
     /**

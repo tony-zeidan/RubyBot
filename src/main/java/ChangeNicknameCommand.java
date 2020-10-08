@@ -21,9 +21,7 @@ public class ChangeNicknameCommand extends RubyCommand {
      * Creates a new command object with a new command word.
      */
     public ChangeNicknameCommand() {
-        super.word=new CommandWord("assignnick","guild member management","Assigns the nickname to the mentioned user.",BotInformation.BOT_PREFIX+"assignnick (@user) (nickname)");
-        super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_BOT,new Permission[] {Permission.NICKNAME_MANAGE});
-        super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_MEMBER,new Permission[] {Permission.NICKNAME_MANAGE});
+        super.word=new CommandWord("assignnick",CommandCategory.MEMBER_MANAGEMENT,"Assigns the nickname to the mentioned user.",BotInformation.BOT_PREFIX+"assignnick (@user) (nickname)");
     }
 
     /**

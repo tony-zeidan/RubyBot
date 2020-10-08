@@ -26,7 +26,7 @@ public class GiftCommand extends RubyCommand {
      */
     public GiftCommand()
     {
-        super.word=new CommandWord("gift","general","A nice way to show some love to your audience as well!",BotInformation.BOT_PREFIX+"gift (@user)");
+        super.word=new CommandWord("gift",CommandCategory.GENERAL,"A nice way to show some love to your audience as well!",BotInformation.BOT_PREFIX+"gift (@user)");
         super.permissionHandler.addPermissions(CommandDefinitions.TEXT_PERMISSIONS_BOT,new Permission[] {Permission.MESSAGE_WRITE,Permission.MESSAGE_MENTION_EVERYONE,Permission.MESSAGE_EMBED_LINKS});
         eb = new EmbedBuilder();
     }

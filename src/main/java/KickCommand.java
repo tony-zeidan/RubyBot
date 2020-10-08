@@ -23,7 +23,7 @@ public class KickCommand extends RubyCommand {
      * Creates a new command object with a new command word.
      */
     public KickCommand() {
-        super.word=new CommandWord("kick","guild member management","Kicks the specified member from the guild.",BotInformation.BOT_PREFIX+"kick (@user)");
+        super.word=new CommandWord("kick",CommandCategory.MEMBER_MANAGEMENT,"Kicks the specified member from the guild.",BotInformation.BOT_PREFIX+"kick (@user)");
         super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_BOT,new Permission[] {Permission.KICK_MEMBERS});
         super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_MEMBER,new Permission[] {Permission.KICK_MEMBERS});
     }

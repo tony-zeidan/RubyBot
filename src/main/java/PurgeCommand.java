@@ -22,7 +22,7 @@ public class PurgeCommand extends RubyCommand {
      */
     public PurgeCommand()
     {
-        super.word=new CommandWord("purge","text channel management","Deletes a given amount of messages from chat",BotInformation.BOT_PREFIX+"purge (amount : optional (default=10))");
+        super.word=new CommandWord("purge",CommandCategory.TEXT_CHANNEL_MANAGEMENT,"Deletes a given amount of messages from chat",BotInformation.BOT_PREFIX+"purge (amount : optional (default=10))");
         super.permissionHandler.addPermissions(CommandDefinitions.TEXT_PERMISSIONS_BOT,new Permission[] {Permission.MESSAGE_HISTORY,Permission.MESSAGE_MANAGE});
         super.permissionHandler.addPermissions(CommandDefinitions.TEXT_PERMISSIONS_MEMBER,new Permission[] {Permission.MESSAGE_HISTORY,Permission.MESSAGE_MANAGE});
     }

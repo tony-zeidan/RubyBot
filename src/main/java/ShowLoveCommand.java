@@ -24,7 +24,7 @@ public class ShowLoveCommand extends RubyCommand {
      * Creates a new command object with a new command word.
      */
     public ShowLoveCommand() {
-        super.word=new CommandWord("showlove","general","A nice way to show some love to your audience!",BotInformation.BOT_PREFIX+"showlove (@user : optional)");
+        super.word=new CommandWord("showlove",CommandCategory.GENERAL,"A nice way to show some love to your audience!",BotInformation.BOT_PREFIX+"showlove (@user : optional)");
         super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_BOT,new Permission[] {Permission.MESSAGE_WRITE});
     }
 

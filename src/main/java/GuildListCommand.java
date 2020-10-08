@@ -1,3 +1,4 @@
+import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.menu.Paginator;
 import net.dv8tion.jda.api.Permission;
@@ -27,7 +28,8 @@ public class GuildListCommand extends RubyNestedCommand {
      */
     public GuildListCommand(EventWaiter ew) {
 
-        super.word = new CommandWord("list", "guild management", "Provides a list of: members, channels", BotInformation.BOT_PREFIX + "list (members | channels | roles | guilds)");
+        super.word = new CommandWord("list", CommandCategory.GUILD_STATISTICS, "Provides a list of: members, channels", BotInformation.BOT_PREFIX + "list (members | channels | roles | guilds)");
+
         super.permissionHandler.addPermissions(CommandDefinitions.TEXT_PERMISSIONS_BOT,new Permission[] {Permission.MESSAGE_WRITE});
         pb = new Paginator.Builder()
                 .setColumns(1)

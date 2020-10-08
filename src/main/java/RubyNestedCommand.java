@@ -8,4 +8,8 @@ public abstract class RubyNestedCommand extends RubyCommand {
     protected void addSubCommand(String name,CommandWord subCommand) {
         subCommands.put(name,subCommand);
     }
+
+    protected CommandWord isValidSubComamnd(String name) {
+        return (subCommands.containsKey(name)) ? subCommands.get(name) : null;
+    }
 }

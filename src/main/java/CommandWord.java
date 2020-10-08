@@ -9,7 +9,7 @@ public class CommandWord {
 
     //properties of the command
     private String name;
-    private String category;
+    private CommandCategory category;
     private String description;
     private String syntax;
 
@@ -23,12 +23,12 @@ public class CommandWord {
      * @param syntax The syntax for the command
      * @throws IllegalArgumentException If any of the given strings are null or are ('')
      */
-    public CommandWord(String name,String category,String description,String syntax) {
+    public CommandWord(String name,CommandCategory category,String description,String syntax) {
 
         if (name==null||name.equals("")) {
             throw new IllegalArgumentException("Name can not reference a null object or be an empty string");
 
-        } else if (category==null||category.equals("")) {
+        } else if (category==null) {
             throw new IllegalArgumentException("Category can not reference a null object or be an empty string");
 
         } else if (description==null||description.equals("")) {
@@ -41,7 +41,7 @@ public class CommandWord {
         this.name = name;
         this.category = category;
         this.description = description;
-        this.syntax = syntax;
+        this.syntax = BotInformation.BOT_PREFIX + syntax;
     }
 
     /**
@@ -58,7 +58,7 @@ public class CommandWord {
      *
      * @return The category of the command
      */
-    public String getCategory() {
+    public CommandCategory getCategory() {
         return category;
     }
 

@@ -20,7 +20,7 @@ public class RoleAssignCommand extends RubyCommand {
      * Creates a new command object with a new command word.
      */
     public RoleAssignCommand() {
-        super.word=new CommandWord("assignrole","guild member management","Assigns the mentioned role to the mentioned user.",BotInformation.BOT_PREFIX+"assignrole (@role) (@user)");
+        super.word=new CommandWord("assignrole",CommandCategory.MEMBER_MANAGEMENT,"Assigns the mentioned role to the mentioned user.",BotInformation.BOT_PREFIX+"assignrole (@role) (@user)");
         super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_BOT,new Permission[] {Permission.MANAGE_ROLES});
         super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_MEMBER,new Permission[] {Permission.MANAGE_ROLES});
     }

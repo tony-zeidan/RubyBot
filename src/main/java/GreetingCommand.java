@@ -24,8 +24,7 @@ public class GreetingCommand extends RubyCommand {
      * Creates a new command object with a new command word.
      */
     public GreetingCommand() {
-        super.word=new CommandWord("greeting","general","Greets Ruby bot kindly.",BotInformation.BOT_PREFIX+"hello");
-        super.permissionHandler.addPermissions(CommandDefinitions.TEXT_PERMISSIONS_BOT,new Permission[] {Permission.MESSAGE_WRITE});
+        super.word=new CommandWord("greeting",CommandCategory.GENERAL,"Greets Ruby bot kindly.",BotInformation.BOT_PREFIX+"hello");
     }
 
     /**

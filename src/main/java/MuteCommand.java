@@ -20,9 +20,9 @@ public class MuteCommand extends RubyCommand {
      * Creates a new command object with a new command word.
      */
     public MuteCommand() {
-        super.word=new CommandWord("mute","voice chat management","Server mutes a given user.",BotInformation.BOT_PREFIX+"mute (@user)");
-        super.permissionHandler.addPermissions(CommandDefinitions.VOICE_PERMISSIONS_BOT,new Permission[] {Permission.VOICE_MUTE_OTHERS});
-        super.permissionHandler.addPermissions(CommandDefinitions.VOICE_PERMISSIONS_MEMBER,new Permission[] {Permission.VOICE_MUTE_OTHERS});
+        super.word=new CommandWord("mute",CommandCategory.VOICE_CHANNEL_MANAGEMENT,"Server mutes a given user.",BotInformation.BOT_PREFIX+"mute (@user)");
+        //super.permissionHandler.addPermissions(CommandDefinitions.VOICE_PERMISSIONS_BOT,new Permission[] {Permission.VOICE_MUTE_OTHERS});
+        //super.permissionHandler.addPermissions(CommandDefinitions.VOICE_PERMISSIONS_MEMBER,new Permission[] {Permission.VOICE_MUTE_OTHERS});
     }
 
     /**
