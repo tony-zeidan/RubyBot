@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @author Tony Abou-Zeidan
  * @version Feb 29, 2020
  */
-public class GuildListCommand extends RubyCommand {
+public class GuildListCommand extends RubyNestedCommand {
 
     private final Paginator.Builder pb;
     /**

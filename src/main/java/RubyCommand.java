@@ -1,6 +1,9 @@
 //jda imports
 import net.dv8tion.jda.api.entities.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * RubyCommand class. An abstract class containing the structure
@@ -127,6 +130,7 @@ public abstract class RubyCommand implements CommandDefinitions {
     protected void writeErrorMessage(TextChannel channel, String message) {
         writeMessage(channel,message + "```\nCommand: " + word.getName().toUpperCase() + " ~ Usage: " + word.getSyntax()+"```");
     }
+
 
     /**
      * Structure for the implementation of executing commands.
