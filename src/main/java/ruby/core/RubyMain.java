@@ -57,6 +57,7 @@ public class RubyMain {
                     GatewayIntent.GUILD_VOICE_STATES,
                     GatewayIntent.GUILD_BANS,
                     GatewayIntent.GUILD_PRESENCES,
+                    GatewayIntent.GUILD_EMOJIS,
                     GatewayIntent.GUILD_MESSAGES)
                     .addEventListeners(ch,ew,cm)
                     .setActivity(Activity.playing("Guild Management"))
