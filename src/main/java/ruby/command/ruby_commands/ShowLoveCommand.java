@@ -1,17 +1,20 @@
-//jda imports
+package ruby.command.ruby_commands;//jda imports
+import ruby.command.meta.CommandCategory;
+import ruby.command.meta.CommandWord;
+import ruby.command.meta.RubyCommand;
+import ruby.core.BotInformation;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.internal.utils.PermissionUtil;
 
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * ShowLoveCommand class. This is extends the main command class,
- * and provides its own functionality for the ShowLoveCommand specifically.
+ * ruby.command.ruby_commands.ShowLoveCommand class. This is extends the main ruby.command class,
+ * and provides its own functionality for the ruby.command.ruby_commands.ShowLoveCommand specifically.
  *
  * Syntax: prefix + showlove 'target audience' OR prefix + showlove
  *
@@ -21,11 +24,11 @@ import java.util.List;
 public class ShowLoveCommand extends RubyCommand {
 
     /**
-     * Default constructor for objects of ShowLoveCommand.
-     * Creates a new command object with a new command word.
+     * Default constructor for objects of ruby.command.ruby_commands.ShowLoveCommand.
+     * Creates a new ruby.command object with a new ruby.command word.
      */
     public ShowLoveCommand() {
-        super.word=new CommandWord("showlove",CommandCategory.GENERAL,"A nice way to show some love to your audience!",BotInformation.BOT_PREFIX+"showlove (@user : optional)");
+        super.word=new CommandWord("showlove", CommandCategory.GENERAL,"A nice way to show some love to your audience!", BotInformation.BOT_PREFIX+"showlove (@user : optional)");
     }
 
     /**

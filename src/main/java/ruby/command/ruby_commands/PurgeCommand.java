@@ -1,13 +1,18 @@
+package ruby.command.ruby_commands;
+
+import ruby.command.meta.CommandCategory;
+import ruby.command.meta.CommandWord;
+import ruby.command.meta.RubyCommand;
+import ruby.core.BotInformation;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 
-import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * PurgeCommand class. This is extends the main command class,
- * and provides its own functionality for the PurgeCommand specifically.
+ * ruby.command.ruby_commands.PurgeCommand class. This is extends the main ruby.command class,
+ * and provides its own functionality for the ruby.command.ruby_commands.PurgeCommand specifically.
  *
  * Syntax: prefix + purge 'amount of messages' OR prefix + purge (only 10 messages)
  *
@@ -17,18 +22,18 @@ import java.util.List;
 public class PurgeCommand extends RubyCommand {
 
     /**
-     * Default constructor for objects of PurgeCommand.
-     * Creates a new command object with a new command word.
+     * Default constructor for objects of ruby.command.ruby_commands.PurgeCommand.
+     * Creates a new ruby.command object with a new ruby.command word.
      */
     public PurgeCommand()
     {
-        super.word=new CommandWord("purge",CommandCategory.TEXT_CHANNEL_MANAGEMENT,"Deletes a given amount of messages from chat",BotInformation.BOT_PREFIX+"purge (amount : optional (default=10))");
+        super.word=new CommandWord("purge", CommandCategory.TEXT_CHANNEL_MANAGEMENT,"Deletes a given amount of messages from chat", BotInformation.BOT_PREFIX+"purge (amount : optional (default=10))");
         super.setPermissions(Permission.MESSAGE_HISTORY,Permission.MESSAGE_MANAGE);
     }
 
     /**
      * Purge implementation of execute.
-     * Given an integer argument, this command will delete the
+     * Given an integer argument, this ruby.command will delete the
      * past 'n' messages from the chat. If no argument is given
      * delete only the past 10 messages.
      *

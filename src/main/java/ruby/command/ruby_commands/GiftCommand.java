@@ -1,4 +1,8 @@
-//jda imports
+package ruby.command.ruby_commands;//jda imports
+import ruby.command.meta.CommandCategory;
+import ruby.command.meta.CommandWord;
+import ruby.command.meta.RubyCommand;
+import ruby.core.BotInformation;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
@@ -8,8 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * ShowLoveCommand class. This is extends the main command class,
- * and provides its own functionality for the ShowLoveCommand specifically.
+ * ruby.command.ruby_commands.ShowLoveCommand class. This is extends the main ruby.command class,
+ * and provides its own functionality for the ruby.command.ruby_commands.ShowLoveCommand specifically.
  *
  * Syntax: prefix + showlove 'target audience' OR prefix + showlove
  *
@@ -21,12 +25,12 @@ public class GiftCommand extends RubyCommand {
     private EmbedBuilder eb;
 
     /**
-     * Default constructor for objects of ShowLoveCommand.
-     * Creates a new command object with a new command word.
+     * Default constructor for objects of ruby.command.ruby_commands.ShowLoveCommand.
+     * Creates a new ruby.command object with a new ruby.command word.
      */
     public GiftCommand()
     {
-        super.word=new CommandWord("gift",CommandCategory.GENERAL,"A nice way to show some love to your audience as well!",BotInformation.BOT_PREFIX+"gift (@user)");
+        super.word=new CommandWord("gift", CommandCategory.GENERAL,"A nice way to show some love to your audience as well!", BotInformation.BOT_PREFIX+"gift (@user)");
         super.setPermissions(Permission.MESSAGE_WRITE,Permission.MESSAGE_EMBED_LINKS,Permission.MESSAGE_MENTION_EVERYONE);
         eb = new EmbedBuilder();
     }

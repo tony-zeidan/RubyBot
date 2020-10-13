@@ -1,3 +1,9 @@
+package ruby.command.ruby_commands;
+
+import ruby.command.meta.CommandCategory;
+import ruby.command.meta.CommandWord;
+import ruby.command.meta.RubyCommand;
+import ruby.core.BotInformation;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
@@ -8,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * KickCommand class. This is extends the main command class,
+ * ruby.command.ruby_commands.KickCommand class. This is extends the main ruby.command class,
  * and provides its own functionality for the Kick specifically.
  *
  * Syntax: prefix + kick 'target user'
@@ -19,11 +25,11 @@ import java.util.List;
 public class KickCommand extends RubyCommand {
 
     /**
-     * Default constructor for objects of KickCommand.
-     * Creates a new command object with a new command word.
+     * Default constructor for objects of ruby.command.ruby_commands.KickCommand.
+     * Creates a new ruby.command object with a new ruby.command word.
      */
     public KickCommand() {
-        super.word=new CommandWord("kick",CommandCategory.MEMBER_MANAGEMENT,"Kicks the specified member from the guild.",BotInformation.BOT_PREFIX+"kick (@user)");
+        super.word=new CommandWord("kick", CommandCategory.MEMBER_MANAGEMENT,"Kicks the specified member from the guild.", BotInformation.BOT_PREFIX+"kick (@user)");
         super.setPermissions(Permission.KICK_MEMBERS);
     }
 

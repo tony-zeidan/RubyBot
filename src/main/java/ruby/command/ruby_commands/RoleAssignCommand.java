@@ -1,3 +1,9 @@
+package ruby.command.ruby_commands;
+
+import ruby.command.meta.CommandCategory;
+import ruby.command.meta.CommandWord;
+import ruby.command.meta.RubyCommand;
+import ruby.core.BotInformation;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 
@@ -5,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * RoleAssign class. This is extends the main command class,
+ * RoleAssign class. This is extends the main ruby.command class,
  * and provides its own functionality for the RoleAssign specifically.
  *
  * Syntax: prefix + assignrole (@role) (@user)
@@ -16,11 +22,11 @@ import java.util.List;
 public class RoleAssignCommand extends RubyCommand {
 
     /**
-     * Default constructor for objects of RoleAssignCommand.
-     * Creates a new command object with a new command word.
+     * Default constructor for objects of ruby.command.ruby_commands.RoleAssignCommand.
+     * Creates a new ruby.command object with a new ruby.command word.
      */
     public RoleAssignCommand() {
-        super.word=new CommandWord("assignrole",CommandCategory.MEMBER_MANAGEMENT,"Assigns the mentioned role to the mentioned user.",BotInformation.BOT_PREFIX+"assignrole (@role) (@user)");
+        super.word=new CommandWord("assignrole", CommandCategory.MEMBER_MANAGEMENT,"Assigns the mentioned role to the mentioned user.", BotInformation.BOT_PREFIX+"assignrole (@role) (@user)");
         super.setPermissions(Permission.MANAGE_ROLES);
 
         //super.permissionHandler.addPermissions(CommandDefinitions.GUILD_PERMISSIONS_BOT,new Permission[] {Permission.MANAGE_ROLES});

@@ -1,32 +1,26 @@
-//jda imports
-import com.jagrosh.jdautilities.command.Command;
+package ruby.command.meta;//jda imports
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 
 /**
- * RubyCommand class. An abstract class containing the structure
- * for the functionality of all sub command classes.
+ * ruby.command.meta.RubyCommand class. An abstract class containing the structure
+ * for the functionality of all sub ruby.command classes.
  *
  * @author Tony Abou-Zeidan
  * @version Feb 29, 2020
  */
 public abstract class RubyCommand {
 
-    //associated command word
+    //associated ruby.command word
     protected CommandWord word;
     protected boolean canWrite;
     private CommandPermissionHandler handler = new CommandPermissionHandler();
 
     /**
-     * Mutator for associated command word.
+     * Mutator for associated ruby.command word.
      *
-     * @return The command word
+     * @return The ruby.command word
      */
     public CommandWord getWord() {
         return word;
@@ -71,7 +65,7 @@ public abstract class RubyCommand {
 
     /**
      * Sends an error message to the specified channel, along
-     * with the syntax of the command being used.
+     * with the syntax of the ruby.command being used.
      *
      * @param channel The channel to send the message to
      * @param message The error part of the message

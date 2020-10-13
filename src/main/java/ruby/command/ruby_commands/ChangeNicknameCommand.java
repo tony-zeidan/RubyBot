@@ -1,10 +1,16 @@
+package ruby.command.ruby_commands;
+
+import ruby.command.meta.CommandCategory;
+import ruby.command.meta.CommandWord;
+import ruby.command.meta.RubyCommand;
+import ruby.core.BotInformation;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * ChangeNicknameCommand class. This is extends the main command class,
+ * ruby.command.ruby_commands.ChangeNicknameCommand class. This is extends the main ruby.command class,
  * and provides its own functionality for the ChangeNickname specifically.
  *
  * Syntax: prefix + assignnick (@user) (nickname)
@@ -17,11 +23,11 @@ public class ChangeNicknameCommand extends RubyCommand {
     private static final Pattern CHOICE = Pattern.compile("<@!(\\d+)>((\\s+.+)+)?");
 
     /**
-     * Default constructor for objects of ChangeNicknameCommand.
-     * Creates a new command object with a new command word.
+     * Default constructor for objects of ruby.command.ruby_commands.ChangeNicknameCommand.
+     * Creates a new ruby.command object with a new ruby.command word.
      */
     public ChangeNicknameCommand() {
-        super.word=new CommandWord("assignnick",CommandCategory.MEMBER_MANAGEMENT,"Assigns the nickname to the mentioned user.",BotInformation.BOT_PREFIX+"assignnick (@user) (nickname)");
+        super.word=new CommandWord("assignnick", CommandCategory.MEMBER_MANAGEMENT,"Assigns the nickname to the mentioned user.", BotInformation.BOT_PREFIX+"assignnick (@user) (nickname)");
         super.setPermissions(Permission.NICKNAME_MANAGE);
     }
 
@@ -38,7 +44,7 @@ public class ChangeNicknameCommand extends RubyCommand {
     public void execute(Message msg, TextChannel channel, Guild guild, Member author) {
         Member self = guild.getSelfMember();
 
-        //check if the bot and author have sufficient permissions for this command
+        //check if the bot and author have sufficient permissions for this ruby.command
         if (!super.checkPermissions(self,author)) return;
         super.canWrite = super.checkPermission(channel,self,Permission.MESSAGE_WRITE);
 

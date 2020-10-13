@@ -1,13 +1,18 @@
+package ruby.command.ruby_commands;
+
+import ruby.command.meta.CommandCategory;
+import ruby.command.meta.CommandWord;
+import ruby.command.meta.RubyCommand;
+import ruby.core.BotInformation;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 /**
- * DeafenCommand class. This is extends the main command class,
- * and provides its own functionality for the DeafenCommand specifically.
+ * ruby.command.ruby_commands.DeafenCommand class. This is extends the main ruby.command class,
+ * and provides its own functionality for the ruby.command.ruby_commands.DeafenCommand specifically.
  *
  * Syntax: prefix + deafen (@user)
  *
@@ -17,11 +22,11 @@ import java.util.List;
 public class DeafenCommand extends RubyCommand {
 
     /**
-     * Default constructor for objects of DeafenCommand.
-     * Creates a new command object with a new command word.
+     * Default constructor for objects of ruby.command.ruby_commands.DeafenCommand.
+     * Creates a new ruby.command object with a new ruby.command word.
      */
     public DeafenCommand() {
-        super.word=new CommandWord("deafen",CommandCategory.VOICE_CHANNEL_MANAGEMENT,"Server deafens a given user.",BotInformation.BOT_PREFIX+"deafen (@user)");
+        super.word=new CommandWord("deafen", CommandCategory.VOICE_CHANNEL_MANAGEMENT,"Server deafens a given user.", BotInformation.BOT_PREFIX+"deafen (@user)");
         super.setPermissions(Permission.VOICE_DEAF_OTHERS);
     }
 
@@ -66,7 +71,7 @@ public class DeafenCommand extends RubyCommand {
                 return;
             }
 
-            //check if the author and bot have enough permissions to execute the command
+            //check if the author and bot have enough permissions to execute the ruby.command
             if (!super.checkPermissions(vc,self,author)) return;
 
             //check the hierarchy to see if the bot and author can both interact with the target member

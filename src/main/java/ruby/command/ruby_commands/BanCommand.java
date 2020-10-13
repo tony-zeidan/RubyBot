@@ -1,3 +1,9 @@
+package ruby.command.ruby_commands;
+
+import ruby.command.meta.CommandCategory;
+import ruby.command.meta.CommandWord;
+import ruby.command.meta.RubyCommand;
+import ruby.core.BotInformation;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
@@ -8,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * BanCommand class. This is extends the main command class,
+ * ruby.command.ruby_commands.BanCommand class. This is extends the main ruby.command class,
  * and provides its own functionality for the Ban specifically.
  *
  * Syntax: prefix + ban 'target user'
@@ -19,11 +25,11 @@ import java.util.List;
 public class BanCommand extends RubyCommand {
 
     /**
-     * Default constructor for objects of BanCommand.
-     * Creates a new command object with a new command word.
+     * Default constructor for objects of ruby.command.ruby_commands.BanCommand.
+     * Creates a new ruby.command object with a new ruby.command word.
      */
     public BanCommand() {
-        super.word=new CommandWord("ban",CommandCategory.MEMBER_MANAGEMENT,"Bans the specified member from the guild.",BotInformation.BOT_PREFIX+"ban 'target member'");
+        super.word=new CommandWord("ban", CommandCategory.MEMBER_MANAGEMENT,"Bans the specified member from the guild.", BotInformation.BOT_PREFIX+"ban 'target member'");
         super.setPermissions(Permission.BAN_MEMBERS);
     }
 
@@ -41,7 +47,7 @@ public class BanCommand extends RubyCommand {
     {
         Member self = guild.getSelfMember();
 
-        //check if the bot and author meet the permissions of this command
+        //check if the bot and author meet the permissions of this ruby.command
         if (!super.checkPermissions(self,author)) return;
         canWrite = super.checkPermission(channel,self,Permission.MESSAGE_WRITE);
 

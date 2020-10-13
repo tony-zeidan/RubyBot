@@ -1,3 +1,5 @@
+package ruby.core.handlers;
+
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
@@ -34,7 +36,7 @@ import java.util.List;
 
 
 /**
- * ChatModerator class.
+ * ruby.core.handlers.ChatModerator class.
  * Provides functionality for curse word blocking,
  * and guild notifications.
  *

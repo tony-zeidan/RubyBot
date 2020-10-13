@@ -1,6 +1,11 @@
-import com.jagrosh.jdautilities.command.Command;
+package ruby.command.ruby_commands;
+
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.menu.Paginator;
+import ruby.command.meta.CommandCategory;
+import ruby.command.meta.CommandWord;
+import ruby.command.meta.RubyNestedCommand;
+import ruby.core.BotInformation;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.exceptions.PermissionException;
@@ -11,7 +16,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * GuildListCommand class. This is extends the main command class,
+ * ruby.command.ruby_commands.GuildListCommand class. This is extends the main ruby.command class,
  * and provides its own functionality for the GuildList specifically.
  *
  * Syntax: prefix + list (members | channels | roles | guilds)
@@ -23,8 +28,8 @@ public class GuildListCommand extends RubyNestedCommand {
 
     private final Paginator.Builder pb;
     /**
-     * Default constructor for objects of GuildListCommand.
-     * Creates a new command object with a new command word.
+     * Default constructor for objects of ruby.command.ruby_commands.GuildListCommand.
+     * Creates a new ruby.command object with a new ruby.command word.
      */
     public GuildListCommand(EventWaiter ew) {
 

@@ -1,3 +1,9 @@
+package ruby.command.ruby_commands;
+
+import ruby.command.meta.CommandCategory;
+import ruby.command.meta.CommandWord;
+import ruby.command.meta.RubyCommand;
+import ruby.core.BotInformation;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 
@@ -5,8 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * MuteCommand class. This is extends the main command class,
- * and provides its own functionality for the MuteCommand specifically.
+ * ruby.command.ruby_commands.MuteCommand class. This is extends the main ruby.command class,
+ * and provides its own functionality for the ruby.command.ruby_commands.MuteCommand specifically.
  *
  * Syntax: prefix + mute (@user)
  *
@@ -16,11 +22,11 @@ import java.util.List;
 public class MuteCommand extends RubyCommand {
 
     /**
-     * Default constructor for objects of MuteCommand.
-     * Creates a new command object with a new command word.
+     * Default constructor for objects of ruby.command.ruby_commands.MuteCommand.
+     * Creates a new ruby.command object with a new ruby.command word.
      */
     public MuteCommand() {
-        super.word=new CommandWord("mute",CommandCategory.VOICE_CHANNEL_MANAGEMENT,"Server mutes a given user.",BotInformation.BOT_PREFIX+"mute (@user)");
+        super.word=new CommandWord("mute", CommandCategory.VOICE_CHANNEL_MANAGEMENT,"Server mutes a given user.", BotInformation.BOT_PREFIX+"mute (@user)");
         super.setPermissions(Permission.VOICE_MUTE_OTHERS);
     }
 
@@ -64,7 +70,7 @@ public class MuteCommand extends RubyCommand {
                 return;
             }
 
-            //check if the author and bot have enough permissions to execute the command
+            //check if the author and bot have enough permissions to execute the ruby.command
             if (!super.checkPermissions(vc,self,author)) return;
 
             //check the hierarchy to see if the bot and author can both interact with the target member

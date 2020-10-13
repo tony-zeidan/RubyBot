@@ -1,10 +1,9 @@
+package ruby.command.meta;
+
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.GuildChannel;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.internal.utils.PermissionUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CommandPermissionHandler {
 

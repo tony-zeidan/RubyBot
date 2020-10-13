@@ -1,13 +1,17 @@
-import com.jagrosh.jdautilities.command.Command;
+package ruby.core.handlers;
+
+import ruby.command.meta.RubyCommand;
+import ruby.core.BotInformation;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import ruby.core.debugging.BotListenerUI;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
 
 /**
- * CommandHandler class.
+ * ruby.core.handlers.CommandHandler class.
  * Contains commands and the associated code with executing them
  * when a message is received.
  *
@@ -38,7 +42,7 @@ public class CommandHandler extends ListenerAdapter
 
     /**
      * Acts as the event listener for when the bot receives a message.
-     * Checks if the message is a valid command, and executes the command.
+     * Checks if the message is a valid ruby.command, and executes the ruby.command.
      *
      * @param event The event to be processed
      */
@@ -60,21 +64,21 @@ public class CommandHandler extends ListenerAdapter
         if (content.equals(""))
             return;
 
-        String commandName = "Not a command";
+        String commandName = "Not a ruby.command";
         String first_word = content.split(" ")[0];
         if (first_word.length() > BotInformation.BOT_PREFIX.length()) {
 
             first_word = first_word.substring(BotInformation.BOT_PREFIX.length());
 
-            //check if the command starts with the prefix
+            //check if the ruby.command starts with the prefix
             if (content.startsWith(BotInformation.BOT_PREFIX)) {
-                //check if valid command
+                //check if valid ruby.command
                 if (validCommands.containsKey(first_word)) {
                     RubyCommand cmd = validCommands.get(first_word);
                     commandName = cmd.getWord().getName().toUpperCase();
                     cmd.execute(message, channel, guild, author);
                 } else {
-                    System.out.println("Not a valid command!");
+                    System.out.println("Not a valid ruby.command!");
                 }
             }
         }

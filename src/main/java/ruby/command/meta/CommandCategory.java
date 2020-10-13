@@ -1,6 +1,4 @@
-import net.dv8tion.jda.api.Permission;
-
-import java.util.List;
+package ruby.command.meta;
 
 public enum CommandCategory {
     GENERAL,

@@ -1,9 +1,16 @@
+package ruby.command.ruby_commands;
+
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.menu.Paginator;
+import ruby.command.meta.CommandCategory;
+import ruby.command.meta.CommandWord;
+import ruby.command.meta.RubyCommand;
+import ruby.core.BotInformation;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.exceptions.PermissionException;
+import ruby.core.handlers.CommandHandler;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -12,10 +19,10 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * HelpCommand class. This is extends the main command class,
+ * ruby.command.ruby_commands.HelpCommand class. This is extends the main ruby.command class,
  * and provides its own functionality for the Help specifically.
  *
- * Syntax: prefix + help (command name : optional)
+ * Syntax: prefix + help (ruby.command name : optional)
  *
  * @author Tony Abou-Zeidan
  * @version Feb 29, 2020
@@ -26,12 +33,12 @@ public class HelpCommand extends RubyCommand
     private final Paginator.Builder pb;
     private CommandHandler ch;
     /**
-     * Default constructor for objects of HelpCommand.
-     * Creates a new command object with a new command word.
+     * Default constructor for objects of ruby.command.ruby_commands.HelpCommand.
+     * Creates a new ruby.command object with a new ruby.command word.
      */
-    public HelpCommand(EventWaiter ew,CommandHandler ch)
+    public HelpCommand(EventWaiter ew, CommandHandler ch)
     {
-        super.word=new CommandWord("help",CommandCategory.GENERAL,"Provides a list of commands and what they do.",BotInformation.BOT_PREFIX+"help (command name : optional)");
+        super.word=new CommandWord("help", CommandCategory.GENERAL,"Provides a list of commands and what they do.", BotInformation.BOT_PREFIX+"help (ruby.command name : optional)");
         this.ch = ch;
         pb = new Paginator.Builder()
             .setColumns(1)
@@ -49,11 +56,11 @@ public class HelpCommand extends RubyCommand
     }
 
     /**
-     * HelpCommand implementation of execute.
+     * ruby.command.ruby_commands.HelpCommand implementation of execute.
      * If no string is given, generate a paginated message
      * containing all the commands and their descriptions.
      * If a string is given and it is valid, print a message
-     * containing the name of the command, it's description
+     * containing the name of the ruby.command, it's description
      * and it's syntax.
      *
      * @param msg The message to process
@@ -91,14 +98,14 @@ public class HelpCommand extends RubyCommand
                     .build();
             p.paginate(channel,1);
 
-            //a specific command requires helping
+            //a specific ruby.command requires helping
         } else if (args.size()==1) {
 
             String target = args.get(0).toLowerCase();
 
             if (!commands.containsKey(target)) {
-                super.writeErrorMessage(channel,"You did not input a valid command for help with!");
-                System.out.println("Not a valid command");
+                super.writeErrorMessage(channel,"You did not input a valid ruby.command for help with!");
+                System.out.println("Not a valid ruby.command");
                 return;
             }
             CommandWord com = commands.get(target).getWord();

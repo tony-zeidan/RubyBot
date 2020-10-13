@@ -1,10 +1,16 @@
-//jda imports
+package ruby.core;//jda imports
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
+import ruby.command.ruby_commands.*;
 import net.dv8tion.jda.api.*;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.requests.GatewayIntent;
-
 import javax.security.auth.login.LoginException;
+
+import ruby.core.handlers.ChatModerator;
+import ruby.core.handlers.CommandHandler;
+
+//TODO: fix implementation of processing arguments in a ruby.command (new class)
+//TODO: testing all commands in any scenarios
 
 /**
  * This class provides the main functionality for the Ruby discord bot.
@@ -23,7 +29,7 @@ public class RubyMain {
             //event waiter for jda-utilities
             EventWaiter ew = new EventWaiter();
 
-            //create a command handler for the bot
+            //create a ruby.command handler for the bot
             CommandHandler ch = new CommandHandler();
 
 
