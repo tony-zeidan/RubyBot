@@ -32,7 +32,6 @@ public class RubyMain {
             //create a ruby.command handler for the bot
             CommandHandler ch = new CommandHandler();
 
-
             ChatModerator cm = new ChatModerator();
 
             //add commands to the handler
