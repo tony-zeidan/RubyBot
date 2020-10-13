@@ -19,4 +19,4 @@ gradlew.bat
 settings.gradle
 
 #Sensitive
-src/main/java/BotInformation.java
+src/main/java/ruby/core/BotInformation.java
