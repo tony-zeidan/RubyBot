@@ -20,5 +20,6 @@ dependencies {
     compile 'net.dv8tion:JDA:4.2.0_207'
     compile 'com.jagrosh:jda-utilities:3.0.4'
     compile 'org.jsoup:jsoup:1.12.2'
+    compile 'junit:junit:4.13'
     compile group: 'org.jdbi', name: 'jdbi3-core', version: '3.12.2'
 }
