@@ -4,7 +4,7 @@ import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.menu.Paginator;
 import ruby.command.meta.CommandCategory;
 import ruby.command.meta.CommandWord;
-import ruby.command.meta.RubyNestedCommand;
+import ruby.command.meta.RubyCommand;
 import ruby.core.BotInformation;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  * @author Tony Abou-Zeidan
  * @version Feb 29, 2020
  */
-public class GuildListCommand extends RubyNestedCommand {
+public class GuildListCommand extends RubyCommand {
 
     private final Paginator.Builder pb;
     /**

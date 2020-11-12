@@ -2,6 +2,8 @@ package ruby.command.meta;//jda imports
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 
+import java.util.Map;
+
 
 /**
  * ruby.command.meta.RubyCommand class. An abstract class containing the structure
@@ -36,6 +38,8 @@ public abstract class RubyCommand {
         if (canWrite)
             channel.sendMessage(message).queue();
     }
+
+    //protected void addSubCommand(String name,RubyCommand command) { subCommands.put(name,command); }
 
     protected void setPermissions(Permission... permission) {
         handler.setPermissions(permission);
