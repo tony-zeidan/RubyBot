@@ -1,5 +1,6 @@
 package ruby.core.handlers;
 
+import ruby.command.meta.RCommand;
 import ruby.command.meta.RubyCommand;
 import ruby.core.BotInformation;
 import net.dv8tion.jda.api.entities.*;
@@ -8,7 +9,9 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import ruby.core.debugging.BotListenerUI;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * ruby.core.handlers.CommandHandler class.
@@ -22,7 +25,7 @@ public class CommandHandler extends ListenerAdapter
 {
     private BotListenerUI ui;
 
-    private HashMap<String, RubyCommand> validCommands;
+    private HashMap<String, RCommand> validCommands;
 
     public CommandHandler()
     {
@@ -30,14 +33,23 @@ public class CommandHandler extends ListenerAdapter
         validCommands = new HashMap<>();
     }
 
-    public void addCommand(String name,RubyCommand command)
+    public void addCommand(String name,RCommand command)
     {
         validCommands.put(name,command);
     }
 
-    public HashMap<String, RubyCommand> getValidCommands()
+    public HashMap<String, RCommand> getValidCommands()
     {
         return validCommands;
+    }
+
+    private RCommand getCommand(String text) {
+        if (validCommands.containsKey(text)) return validCommands.get(text);
+        for (String name : validCommands.keySet()) {
+            RCommand rc = validCommands.get(name);
+            if (rc.isAlias(text)) return rc;
+        }
+        return null;
     }
 
     /**
@@ -65,7 +77,8 @@ public class CommandHandler extends ListenerAdapter
             return;
 
         String commandName = "Not a ruby.command";
-        String first_word = content.split(" ")[0];
+        String[] splitText = content.toLowerCase().split("\\s+");
+        String first_word = splitText[0];
         if (first_word.length() > BotInformation.BOT_PREFIX.length()) {
 
             first_word = first_word.substring(BotInformation.BOT_PREFIX.length());
@@ -73,12 +86,13 @@ public class CommandHandler extends ListenerAdapter
             //check if the ruby.command starts with the prefix
             if (content.startsWith(BotInformation.BOT_PREFIX)) {
                 //check if valid ruby.command
-                if (validCommands.containsKey(first_word)) {
-                    RubyCommand cmd = validCommands.get(first_word);
+                RCommand cmd = getCommand(first_word);
+                if (cmd!=null) {
                     commandName = cmd.getWord().getName().toUpperCase();
-                    cmd.execute(message, channel, guild, author);
+                    List<String> arguments = Arrays.asList(splitText).subList(1,splitText.length);
+                    cmd.execute(arguments);
                 } else {
-                    System.out.println("Not a valid ruby.command!");
+                    System.out.println("Not a valid ruby command!");
                 }
             }
         }

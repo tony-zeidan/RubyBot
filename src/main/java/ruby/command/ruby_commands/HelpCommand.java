@@ -2,9 +2,7 @@ package ruby.command.ruby_commands;
 
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.menu.Paginator;
-import ruby.command.meta.CommandCategory;
-import ruby.command.meta.CommandWord;
-import ruby.command.meta.RubyCommand;
+import ruby.command.meta.*;
 import ruby.core.BotInformation;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
@@ -77,7 +75,7 @@ public class HelpCommand extends RubyCommand
         String[] msgParts = msg.getContentRaw().split("\\s+");
         List<String> args = Arrays.asList(msgParts).subList(1, msgParts.length);
 
-        HashMap<String, RubyCommand> commands = ch.getValidCommands();
+        HashMap<String, RCommand> commands = ch.getValidCommands();
 
         pb.clearItems();
 
@@ -86,7 +84,7 @@ public class HelpCommand extends RubyCommand
 
             pb.setText("Ruby Commands:");
             for (String k : commands.keySet()) {
-                RubyCommand com = commands.get(k);
+                RCommand com = commands.get(k);
                 pb.addItems("**"+com.getWord().getName()+"**");
                 pb.addItems("*"+com.getWord().getCategory()+"*");
                 pb.addItems("```- "+com.getWord().getDescription()+"```");
@@ -108,7 +106,7 @@ public class HelpCommand extends RubyCommand
                 System.out.println("Not a valid ruby.command");
                 return;
             }
-            CommandWord com = commands.get(target).getWord();
+            RCommandWord com = commands.get(target).getWord();
             EmbedBuilder eb = new EmbedBuilder();
             eb.setTitle(com.getName());
             eb.setColor(Color.RED);

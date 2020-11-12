@@ -2,8 +2,7 @@ package ruby.command.meta;//jda imports
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -19,9 +18,12 @@ public abstract class RCommand {
     protected RCommandWord word;
     protected boolean canWrite;
     private Map<String,RCommand> subCommands;
+    private List<String> aliases;
 
     public RCommand(RCommandWord word) {
         this.word=word;
+        subCommands = new HashMap<>();
+        aliases = new ArrayList<>();
     }
 
     /**
@@ -46,6 +48,25 @@ public abstract class RCommand {
 
     protected void addSubCommand(RCommand command) { subCommands.put(command.getWord().getName(),command); }
 
+    protected boolean isSubCommand(String text) {
+        if (subCommands.containsKey(text)) {
+            return true;
+        } else {
+            for (RCommand rc : subCommands.values()) {
+                if (rc.isAlias(text)) return true;
+            }
+            return false;
+        }
+    }
+
+    protected void setAliases(String... aliases) {
+        this.aliases = Arrays.asList(aliases);
+    }
+
+    public boolean isAlias(String text) {
+        return aliases.contains(text);
+    }
+
     /**
      * Sends an error message to the specified channel, along
      * with the syntax of the ruby.command being used.
@@ -57,5 +78,20 @@ public abstract class RCommand {
         writeMessage(channel, message + "```\nCommand: " + word.getName().toUpperCase() + " ~ Usage: " + word.getSyntax() + "```");
     }
 
-    public abstract void execute(Message msg);
+    protected RCommand findSubCommand(List<String> arguments) {
+        return findSubRec(null,arguments);
+    }
+
+    private RCommand findSubRec(RCommand previous,List<String> arguments) {
+        if (arguments==null||arguments.isEmpty()) return previous;
+        String subString = arguments.get(0);
+        if (isSubCommand(subString)) {
+            return findSubRec(subCommands.get(subString),arguments.subList(1,arguments.size()));
+        }
+        return previous;
+    }
+
+    public void execute(List<String> arguments) {
+        System.out.println("This command can not be executed!");
+    }
 }

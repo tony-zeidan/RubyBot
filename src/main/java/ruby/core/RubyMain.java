@@ -1,5 +1,7 @@
 package ruby.core;//jda imports
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
+import ruby.command.meta.CalculateCommand;
+import ruby.command.meta.TicTacToeCommand;
 import ruby.command.ruby_commands.*;
 import net.dv8tion.jda.api.*;
 import net.dv8tion.jda.api.entities.*;
@@ -35,19 +37,8 @@ public class RubyMain {
             ChatModerator cm = new ChatModerator();
 
             //add commands to the handler
-            ch.addCommand("showlove", new ShowLoveCommand());
-            ch.addCommand("gift", new GiftCommand());
-            ch.addCommand("deafen",new DeafenCommand());
-            ch.addCommand("mute",new MuteCommand());
-            ch.addCommand("purge",new PurgeCommand());
-            ch.addCommand("kick",new KickCommand());
-            ch.addCommand("ban",new BanCommand());
-            ch.addCommand("assignrole",new RoleAssignCommand());
-            ch.addCommand("assignnick",new ChangeNicknameCommand());
-            ch.addCommand("slowmode",new SlowModeCommand());
-            ch.addCommand("list",new GuildListCommand(ew));
-            ch.addCommand("help",new HelpCommand(ew,ch));
-            ch.addCommand("hello",new GreetingCommand());
+            ch.addCommand("calculate",new CalculateCommand());
+            ch.addCommand("tictactoe",new TicTacToeCommand());
 
             //create the instance of our api with intents
             JDA api = JDABuilder.create(BotInformation.BOT_TOKEN,
