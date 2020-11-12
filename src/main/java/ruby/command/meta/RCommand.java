@@ -12,7 +12,7 @@ import java.util.*;
  * @author Tony Abou-Zeidan
  * @version Feb 29, 2020
  */
-public abstract class RCommand {
+public class RCommand {
 
     //associated ruby.command word
     protected RCommandWord word;
@@ -48,14 +48,14 @@ public abstract class RCommand {
 
     protected void addSubCommand(RCommand command) { subCommands.put(command.getWord().getName(),command); }
 
-    protected boolean isSubCommand(String text) {
+    private RCommand getSubCommand(String text) {
         if (subCommands.containsKey(text)) {
-            return true;
+            return subCommands.get(text);
         } else {
             for (RCommand rc : subCommands.values()) {
-                if (rc.isAlias(text)) return true;
+                if (rc.isAlias(text)) return rc;
             }
-            return false;
+            return null;
         }
     }
 
@@ -64,7 +64,10 @@ public abstract class RCommand {
     }
 
     public boolean isAlias(String text) {
-        return aliases.contains(text);
+        for (String alias : aliases) {
+            if (alias.equals(text)) return true;
+        }
+        return false;
     }
 
     /**
@@ -85,8 +88,9 @@ public abstract class RCommand {
     private RCommand findSubRec(RCommand previous,List<String> arguments) {
         if (arguments==null||arguments.isEmpty()) return previous;
         String subString = arguments.get(0);
-        if (isSubCommand(subString)) {
-            return findSubRec(subCommands.get(subString),arguments.subList(1,arguments.size()));
+        RCommand rc = getSubCommand(subString);
+        if (rc!=null) {
+            return findSubRec(rc,arguments.subList(1,arguments.size()));
         }
         return previous;
     }
