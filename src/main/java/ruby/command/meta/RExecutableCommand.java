@@ -5,8 +5,7 @@ import net.dv8tion.jda.api.entities.GuildChannel;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 
-public class RExecutableCommand extends RCommand {
-
+public abstract class RExecutableCommand extends RCommand {
 
     private CommandPermissionHandler handler;
     private RCommandRunner runner;
@@ -15,10 +14,6 @@ public class RExecutableCommand extends RCommand {
         super(commandWord);
         handler = new CommandPermissionHandler();
         runner = null;
-    }
-
-    public void setRunner(RCommandRunner runner) {
-        this.runner = runner;
     }
 
     protected void setPermissions(Permission... permission) {
@@ -45,5 +40,5 @@ public class RExecutableCommand extends RCommand {
         return handler.canInteractTarget(self,member,target);
     }
 
-    public void execute(Message msg);
+    public abstract void execute(Message msg);
 }

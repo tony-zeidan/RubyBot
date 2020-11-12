@@ -13,18 +13,15 @@ import java.util.Map;
  * @author Tony Abou-Zeidan
  * @version Feb 29, 2020
  */
-public class RCommand {
+public abstract class RCommand {
 
     //associated ruby.command word
     protected RCommandWord word;
     protected boolean canWrite;
     private Map<String,RCommand> subCommands;
 
-
-    public RCommand(RCommandWord commandWord) {
-        word=commandWord;
-        canWrite=false;
-        subCommands = new HashMap<>();
+    public RCommand(RCommandWord word) {
+        this.word=word;
     }
 
     /**
@@ -49,7 +46,6 @@ public class RCommand {
 
     protected void addSubCommand(RCommand command) { subCommands.put(command.getWord().getName(),command); }
 
-
     /**
      * Sends an error message to the specified channel, along
      * with the syntax of the ruby.command being used.
@@ -60,4 +56,6 @@ public class RCommand {
     protected void writeErrorMessage(TextChannel channel, String message) {
         writeMessage(channel, message + "```\nCommand: " + word.getName().toUpperCase() + " ~ Usage: " + word.getSyntax() + "```");
     }
+
+    public abstract void execute(Message msg);
 }
